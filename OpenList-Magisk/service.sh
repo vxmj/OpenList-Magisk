@@ -199,22 +199,9 @@ update_module_prop_running() {
         chmod 644 "$MODULE_PROP_FILE" 2>/dev/null || log "错误: 无法设置 $MODULE_PROP_FILE 的权限"
     fi
 
-    log "更新前的 module.prop 内容: $(cat "$MODULE_PROP_FILE" 2>/dev/null || echo '无法读取 module.prop')"
     grep -v '^description=' "$MODULE_PROP_FILE" > "${MODULE_PROP_FILE}.tmp" 2>/dev/null
     echo "$NEW_DESC" >> "${MODULE_PROP_FILE}.tmp"
-    if mv "${MODULE_PROP_FILE}.tmp" "$MODULE_PROP_FILE" 2>/dev/null; then
-        log "成功更新 module.prop"
-    else
-        log "错误: 更新 module.prop 失败"
-    fi
-
-    rm -f "${MODULE_PROP_FILE}.bak" "${MODULE_PROP_FILE}.tmp.*" 2>/dev/null
-    if grep -vE '^[a-zA-Z_]+=' "$MODULE_PROP_FILE" >/dev/null; then
-        log "警告: module.prop 包含无效行，正在清理"
-        grep -E '^[a-zA-Z_]+=' "$MODULE_PROP_FILE" > "${MODULE_PROP_FILE}.clean" 2>/dev/null
-        mv "${MODULE_PROP_FILE}.clean" "$MODULE_PROP_FILE" 2>/dev/null
-        log "清理后的 module.prop 内容: $(cat "$MODULE_PROP_FILE" 2>/dev/null || echo '无法读取 module.prop')"
-    fi
+    mv "${MODULE_PROP_FILE}.tmp" "$MODULE_PROP_FILE" 2>/dev/null
 }
 
 log "启动 service.sh 于 $(date '+%Y-%m-%d %H:%M:%S')"
@@ -250,6 +237,20 @@ if [ ! -w "$DATA_DIR" ]; then
 fi
 log "已创建或验证数据目录：$DATA_DIR"
 
+# ==========================================
+# 核心修复区：构建 Magisk 下的安全运行环境
+# ==========================================
+# 1. 强制设定系统的临时目录和家目录，防止后台服务无法写入 Token 缓存
+export HOME="$DATA_DIR"
+export TMPDIR="$DATA_DIR/tmp"
+export USER="root"
+mkdir -p "$TMPDIR"
+chmod 777 "$TMPDIR"
+
+# 2. 强制将工作目录切换到数据目录，避免停留在只读的 / 根目录
+cd "$DATA_DIR" || log "警告: 无法切换到数据目录"
+# ==========================================
+
 ELAPSED=0
 MAX_WAIT=60
 while [ $ELAPSED -lt $MAX_WAIT ]; do
@@ -262,12 +263,10 @@ while [ $ELAPSED -lt $MAX_WAIT ]; do
     ELAPSED=$((ELAPSED + 1))
 done
 
-if [ $ELAPSED -ge $MAX_WAIT ]; then
-    log "警告: 系统启动超时，继续尝试启动 openlist"
-fi
-
 log "启动 OpenList: $OPENLIST_BINARY server --data $DATA_DIR"
-$OPENLIST_BINARY server --data "$DATA_DIR" &
+
+# 3. 修复运行命令：添加重定向，彻底脱离底层 shell 的关联，防止意外挂起
+"$OPENLIST_BINARY" server --data "$DATA_DIR" >/dev/null 2>&1 &
 OPENLIST_PID=$!
 
 if ps -p $OPENLIST_PID >/dev/null || pgrep -f "$OPENLIST_BINARY server --data" >/dev/null; then
@@ -275,7 +274,5 @@ if ps -p $OPENLIST_PID >/dev/null || pgrep -f "$OPENLIST_BINARY server --data" >
     update_module_prop_running
 else
     log "错误: 无法启动 OpenList 服务"
-    OUTPUT=$($OPENLIST_BINARY server --data "$DATA_DIR" 2>&1)
-    log "手动运行输出: $OUTPUT"
     exit 1
 fi
