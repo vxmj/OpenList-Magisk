@@ -98,9 +98,13 @@ else
 
     if [ -f "$SERVICE_SH" ]; then
         sh "$SERVICE_SH"
-        sleep 1
+        sleep 2
         if check_openlist_status; then
             echo "✅ 启动成功"
+            # service.sh 的 update_module_prop_running 是异步的，
+            # 这里立即写一条"启动中"占位描述，让 Magisk UI 马上刷新，
+            # 后台 IP/端口就绪后 service.sh 会再覆盖一次正确地址
+            "$BUSYBOX" sed -i "s|^description=.*|description=【启动中】OpenList 正在获取地址，请稍候刷新...|" "$MODULE_PROP"
         else
             echo "❌ 启动失败"
             exit 1
