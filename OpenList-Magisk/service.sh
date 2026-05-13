@@ -265,7 +265,19 @@ done
 
 log "启动 OpenList: $OPENLIST_BINARY server --data $DATA_DIR"
 
-# 3. 修复运行命令：添加重定向，彻底脱离底层 shell 的关联，防止意外挂起
+# ==========================================
+# 息屏网络保活修复区
+# ==========================================
+settings put global wifi_sleep_policy 2 2>/dev/null && \
+    log "已设置 WiFi 永不休眠策略" || log "警告: WiFi 休眠策略设置失败"
+
+echo "openlist_wake_lock" > /sys/power/wake_lock 2>/dev/null && \
+    log "已申请内核唤醒锁" || log "警告: 无法申请唤醒锁"
+
+dumpsys deviceidle whitelist +com.android.shell 2>/dev/null
+log "已尝试配置 Doze 白名单"
+# ==========================================
+
 "$OPENLIST_BINARY" server --data "$DATA_DIR" >/dev/null 2>&1 &
 OPENLIST_PID=$!
 
@@ -276,3 +288,21 @@ else
     log "错误: 无法启动 OpenList 服务"
     exit 1
 fi
+
+# ==========================================
+# 守护循环（Watchdog）：续期唤醒锁 + 进程保活
+# ==========================================
+(
+    while true; do
+        sleep 55
+        echo "openlist_wake_lock" > /sys/power/wake_lock 2>/dev/null
+        if ! pgrep -f "$OPENLIST_BINARY server --data" > /dev/null 2>&1; then
+            log "守护: OpenList 进程意外退出，正在重启..."
+            "$OPENLIST_BINARY" server --data "$DATA_DIR" > /dev/null 2>&1 &
+            log "守护: OpenList 已重启 (PID: $!)"
+            update_module_prop_running
+        fi
+    done
+) &
+log "守护进程已启动 (Watchdog PID: $!)"
+# ==========================================
