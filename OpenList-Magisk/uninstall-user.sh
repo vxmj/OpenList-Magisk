@@ -1,59 +1,75 @@
 # shellcheck shell=ash
-# uninstall.sh for OpenList Magisk/KSU Module
+# uninstall-user.sh for OpenList Magisk/KSU/APatch Module
+# 用户选择是否保留数据
 
-#==== 侦探：Magisk or KernelSU ====
+#==== 侦探：Magisk or KernelSU or APatch ====
 if [ -n "$MAGISK_VER" ]; then
     MODROOT="$MODPATH"
 elif [ -n "$KSU" ] || [ -n "$KERNELSU" ]; then
     MODROOT="$MODULEROOT"
+elif [ -n "$APATCH" ]; then
+    MODROOT="$MODULEROOT"
 else
-    MODROOT="$MODPATH"  # 兜底，保持旧逻辑
+    MODROOT="$MODPATH"
 fi
 #==== 侦探结束 ====
 
-# 日志函数
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1"
 }
 
-# 停止服务函数
+# 停止守护进程 + OpenList 服务
 stop_service() {
-    if pgrep -f openlist >/dev/null; then
+    # 先杀守护进程，防止它在 55 秒后把 OpenList 复活
+    WATCHDOG_PID_FILE="$MODROOT/watchdog.pid"
+    if [ -f "$WATCHDOG_PID_FILE" ]; then
+        WATCHDOG_PID=$(cat "$WATCHDOG_PID_FILE")
+        if [ -n "$WATCHDOG_PID" ]; then
+            kill "$WATCHDOG_PID" 2>/dev/null && \
+                log "守护进程已终止 (PID: $WATCHDOG_PID)" || \
+                log "守护进程已不存在 (PID: $WATCHDOG_PID)"
+        fi
+        rm -f "$WATCHDOG_PID_FILE"
+    fi
+
+    # 再杀 OpenList 主进程
+    if pgrep -f openlist > /dev/null 2>&1; then
         log "正在停止 OpenList 服务..."
         pkill -f openlist
         sleep 1
-        if pgrep -f openlist >/dev/null; then
-            log "警告：无法完全停止 OpenList 服务"
+        if pgrep -f openlist > /dev/null 2>&1; then
+            log "警告: 无法完全停止 OpenList 服务"
             return 1
-        else
-            log "OpenList 服务已停止"
-            return 0
         fi
+        log "OpenList 服务已停止"
     else
         log "OpenList 服务未运行"
-        return 0
     fi
+
+    # 释放唤醒锁
+    echo "openlist_wake_lock" > /sys/power/wake_unlock 2>/dev/null && \
+        log "唤醒锁已释放" || log "唤醒锁释放失败（可能已自动过期）"
+
+    return 0
 }
 
 # 清理二进制文件
 clean_binaries() {
     local found=0
-    local paths="/data/adb/openlist/bin/openlist $MODROOT/bin/openlist $MODROOT/system/bin/openlist"
-    
-    for path in $paths; do
+    for path in \
+        /data/adb/openlist/bin/openlist \
+        "$MODROOT/bin/openlist" \
+        "$MODROOT/system/bin/openlist"; do
         if [ -f "$path" ]; then
             log "正在删除二进制文件：$path"
             rm -f "$path"
             found=1
         fi
     done
-    
-    if [ $found -eq 0 ]; then
-        log "未找到 OpenList 二进制文件"
-    fi
+    [ $found -eq 0 ] && log "未找到 OpenList 二进制文件"
 }
 
-# 清理数据目录
+# 用户选择是否保留数据
 clean_data() {
     echo "数据清理选项："
     echo "1. 保留数据"
@@ -81,22 +97,13 @@ clean_data() {
     esac
 }
 
-# 主要卸载流程
 main() {
     log "开始卸载 OpenList Magisk 模块..."
-
-    # 停止服务
     stop_service
-    
-    # 清理二进制文件
     clean_binaries
-    
-    # 清理数据（用户选择）
     clean_data
-    
     log "卸载完成"
     echo "请重启设备以完成卸载"
 }
 
-# 执行主函数
 main
