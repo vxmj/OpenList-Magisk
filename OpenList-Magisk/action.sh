@@ -7,7 +7,7 @@ MODULE_PROP="$MODDIR/module.prop"
 SERVICE_SH="$MODDIR/service.sh"
 OPENLIST_BINARY="__PLACEHOLDER_BINARY_PATH__"
 WATCHDOG_PID_FILE="$MODDIR/watchdog.pid"
-REPO_URL="https://github.com/Alien-Et/OpenList-Magisk"
+REPO_URL="https://github.com/vxmj/OpenList-Magisk"
 LOG_FILE="$MODDIR/action.log"
 
 log() {
