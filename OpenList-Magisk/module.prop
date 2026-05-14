@@ -1,7 +1,7 @@
 id=openlist
-name=OpenList (Magisk/KernelSU/APatch)
+name=OpenList
 version=v4.2.1
 versionCode=4201
 author=Alien-Et
-description=【已停止】请点击"操作"启动程序。项目地址：https://github.com/Alien-Et/OpenList-Magisk
-updateJson=https://raw.githubusercontent.com/Alien-Et/OpenList-Magisk/main/update.json
+description=【已停止】请点击"操作"启动程序。项目地址：https://github.com/vxmj/OpenList-Magisk
+updateJson=https://raw.githubusercontent.com/vxmj/OpenList-Magisk/main/update.json
