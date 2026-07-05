@@ -1,51 +1,100 @@
-### &nbsp;&nbsp;&nbsp;🚨 Breaking Changes
-
-- **cache**: Extract hybrid_cache package &nbsp;-&nbsp; by @j2rong4cn in https://github.com/OpenListTeam/OpenList/issues/2477 [<samp>(9eae6)</samp>](https://github.com/OpenListTeam/OpenList/commit/9eae6258)
-- **settings**: Move FilterReadMeScripts to frontend &nbsp;-&nbsp; by @xrgzs in https://github.com/OpenListTeam/OpenList/issues/2346 [<samp>(a5ba6)</samp>](https://github.com/OpenListTeam/OpenList/commit/a5ba6a0e)
-
 ### &nbsp;&nbsp;&nbsp;🚀 Features
 
-- **115_open**: Implement Getter interface &nbsp;-&nbsp; by @sevxn007 in https://github.com/OpenListTeam/OpenList/issues/1811 [<samp>(07506)</samp>](https://github.com/OpenListTeam/OpenList/commit/07506b00)
-- **189pc**: Implement AccessToken login &nbsp;-&nbsp; by @zypluckyphoenix in https://github.com/OpenListTeam/OpenList/issues/2245 [<samp>(0726d)</samp>](https://github.com/OpenListTeam/OpenList/commit/0726d166)
-- **func**: Support ed2k & magnet & torrent offline download &nbsp;-&nbsp; by @PIKACHUIM in https://github.com/OpenListTeam/OpenList/issues/2452 [<samp>(1d071)</samp>](https://github.com/OpenListTeam/OpenList/commit/1d071c0f)
-- **s3**: Implement Getter interface &nbsp;-&nbsp; by @ZRHann in https://github.com/OpenListTeam/OpenList/issues/1790 [<samp>(9033b)</samp>](https://github.com/OpenListTeam/OpenList/commit/9033b550)
-- **sharing**: Allow custom share IDs &nbsp;-&nbsp; by @MuelNova in https://github.com/OpenListTeam/OpenList/issues/2353 [<samp>(7e37c)</samp>](https://github.com/OpenListTeam/OpenList/commit/7e37c405)
-- **webdav**: Implement Getter interface &nbsp;-&nbsp; by @ZRHann and **Copilot** in https://github.com/OpenListTeam/OpenList/issues/2421 [<samp>(e2840)</samp>](https://github.com/OpenListTeam/OpenList/commit/e28406fa)
+- **actions**:
+  - Add workflow to clean up untagged Docker images &nbsp;-&nbsp; by @elysia-best in https://github.com/OpenListTeam/OpenList/issues/2657 [<samp>(9e55a)</samp>](https://github.com/OpenListTeam/OpenList/commit/9e55a011)
+- **archive**:
+  - Support livp as zip archive &nbsp;-&nbsp; by @jyxjjj and **Codex** in https://github.com/OpenListTeam/OpenList/issues/2624 [<samp>(b05a5)</samp>](https://github.com/OpenListTeam/OpenList/commit/b05a51a0)
+- **baidu**:
+  - Support link cache lasting one hour &nbsp;-&nbsp; by @hcrgm in https://github.com/OpenListTeam/OpenList/issues/2033 [<samp>(da84a)</samp>](https://github.com/OpenListTeam/OpenList/commit/da84a800)
+- **drivers**:
+  - Add emby driver &nbsp;-&nbsp; by @Akizon77 in https://github.com/OpenListTeam/OpenList/issues/2270 [<samp>(ac80f)</samp>](https://github.com/OpenListTeam/OpenList/commit/ac80fe19)
+  - Add Cloudflare Image Bed support &nbsp;-&nbsp; by @ZZ0YY, **Copilot** and **Copilot Autofix powered by AI** in https://github.com/OpenListTeam/OpenList/issues/2427 [<samp>(6eedf)</samp>](https://github.com/OpenListTeam/OpenList/commit/6eedff85)
+- **drivers/alidoc**:
+  - Add DingTalk Docs driver &nbsp;-&nbsp; by @zjhcx and @j2rong4cn in https://github.com/OpenListTeam/OpenList/issues/2543 [<samp>(aa534)</samp>](https://github.com/OpenListTeam/OpenList/commit/aa534a95)
+- **mcp**:
+  - Add mcp endpoint for whole openlist &nbsp;-&nbsp; by @jyxjjj and **Codex** in https://github.com/OpenListTeam/OpenList/issues/2485 [<samp>(3b017)</samp>](https://github.com/OpenListTeam/OpenList/commit/3b017c2b)
+- **onedrive_sharelink**:
+  - Support direct download redirects &nbsp;-&nbsp; by @syscc, **syscc** and **Codex** in https://github.com/OpenListTeam/OpenList/issues/2591 [<samp>(97370)</samp>](https://github.com/OpenListTeam/OpenList/commit/9737006a)
+  - Support upload and folder sizes &nbsp;-&nbsp; by @syscc, **syscc** and **Codex** in https://github.com/OpenListTeam/OpenList/issues/2595 [<samp>(08931)</samp>](https://github.com/OpenListTeam/OpenList/commit/08931511)
+- **s3**:
+  - Support direct transfer redirects &nbsp;-&nbsp; by @syscc, **syscc** and **Codex** in https://github.com/OpenListTeam/OpenList/issues/2598 [<samp>(88d25)</samp>](https://github.com/OpenListTeam/OpenList/commit/88d256de)
 
 ### &nbsp;&nbsp;&nbsp;🐞 Bug Fixes
 
-- **115**:
-  - Fix capacity display and CDN 403 errors &nbsp;-&nbsp; by @SheltonZhu in https://github.com/OpenListTeam/OpenList/issues/2510 [<samp>(ffbbc)</samp>](https://github.com/OpenListTeam/OpenList/commit/ffbbc1cc)
-- **189pc**:
-  - Handle numeric res_code in RenameResp to fix JSON unmarshal error &nbsp;-&nbsp; by @PIKACHUIM in https://github.com/OpenListTeam/OpenList/issues/2489 [<samp>(b2820)</samp>](https://github.com/OpenListTeam/OpenList/commit/b28208bd)
-- **about**:
-  - Fix large logo on about page &nbsp;-&nbsp; by @jyxjjj in https://github.com/OpenListTeam/OpenList/issues/2418 [<samp>(201a2)</samp>](https://github.com/OpenListTeam/OpenList/commit/201a206e)
+- Prevent panic in unaligned 64-bit atomic &nbsp;-&nbsp; by @yunxuanhao in https://github.com/OpenListTeam/OpenList/issues/2637 [<samp>(d403f)</samp>](https://github.com/OpenListTeam/OpenList/commit/d403f75d)
+- **115-open**:
+  - Map SDK not found errors &nbsp;-&nbsp; by @syscc in https://github.com/OpenListTeam/OpenList/issues/2596 [<samp>(726bb)</samp>](https://github.com/OpenListTeam/OpenList/commit/726bbf4b)
+- **archive**:
+  - Prefer utf-8 for non-EFS zip names &nbsp;-&nbsp; by @Lanfei in https://github.com/OpenListTeam/OpenList/issues/2557 [<samp>(9b587)</samp>](https://github.com/OpenListTeam/OpenList/commit/9b587ee1)
+- **build.sh**:
+  - Remove `rm -rf .git/` &nbsp;-&nbsp; by @elysia-best in https://github.com/OpenListTeam/OpenList/issues/2703 [<samp>(a92d5)</samp>](https://github.com/OpenListTeam/OpenList/commit/a92d59d3)
+- **cache,mem**:
+  - Replace finalizers with runtime.AddCleanup &nbsp;-&nbsp; by @j2rong4cn in https://github.com/OpenListTeam/OpenList/issues/2535 [<samp>(9282e)</samp>](https://github.com/OpenListTeam/OpenList/commit/9282e8ef)
+- **chaoxing**:
+  - Support multiple uploadDate formats &nbsp;-&nbsp; by @yuxiaoyu8192 in https://github.com/OpenListTeam/OpenList/issues/2545 [<samp>(cd664)</samp>](https://github.com/OpenListTeam/OpenList/commit/cd6643a6)
+- **clean_docker**:
+  - Only fetch up to 10 pages of image versions &nbsp;-&nbsp; by @elysia-best in https://github.com/OpenListTeam/OpenList/issues/2680 [<samp>(e9ea9)</samp>](https://github.com/OpenListTeam/OpenList/commit/e9ea9915)
+- **deps**:
+  - Update module github.com/antchfx/htmlquery to v1.3.6 &nbsp;-&nbsp; by @PIKACHUIM in https://github.com/OpenListTeam/OpenList/issues/2601 [<samp>(009d8)</samp>](https://github.com/OpenListTeam/OpenList/commit/009d834e)
+  - Update module github.com/aws/aws-sdk-go to v1.55.8 &nbsp;-&nbsp; in https://github.com/OpenListTeam/OpenList/issues/2574 [<samp>(aea77)</samp>](https://github.com/OpenListTeam/OpenList/commit/aea77c59)
+  - Update github.com/t3rm1n4l/go-mega digest to 6845944 &nbsp;-&nbsp; in https://github.com/OpenListTeam/OpenList/issues/2088 [<samp>(40b39)</samp>](https://github.com/OpenListTeam/OpenList/commit/40b39000)
+  - Update module github.com/charmbracelet/bubbles to v0.21.1 &nbsp;-&nbsp; in https://github.com/OpenListTeam/OpenList/issues/2686 [<samp>(759ad)</samp>](https://github.com/OpenListTeam/OpenList/commit/759adfca)
+  - Update module github.com/pkg/sftp to v1.13.10 &nbsp;-&nbsp; in https://github.com/OpenListTeam/OpenList/issues/2694 [<samp>(30922)</samp>](https://github.com/OpenListTeam/OpenList/commit/30922b6d)
+  - Update module github.com/sirupsen/logrus to v1.9.4 &nbsp;-&nbsp; in https://github.com/OpenListTeam/OpenList/issues/2695 [<samp>(31810)</samp>](https://github.com/OpenListTeam/OpenList/commit/31810f55)
+  - Update module github.com/ncw/swift/v2 to v2.0.5 &nbsp;-&nbsp; in https://github.com/OpenListTeam/OpenList/issues/2691 [<samp>(1be74)</samp>](https://github.com/OpenListTeam/OpenList/commit/1be74776)
+  - Update module github.com/mholt/archives to v0.1.5 &nbsp;-&nbsp; in https://github.com/OpenListTeam/OpenList/issues/2690 [<samp>(33015)</samp>](https://github.com/OpenListTeam/OpenList/commit/33015eee)
+  - Update module github.com/bodgit/sevenzip to v1.6.4 &nbsp;-&nbsp; by @PIKACHUIM in https://github.com/OpenListTeam/OpenList/issues/2682 [<samp>(cc3d8)</samp>](https://github.com/OpenListTeam/OpenList/commit/cc3d8a06)
+  - Update module github.com/gin-contrib/cors to v1.7.7 &nbsp;-&nbsp; in https://github.com/OpenListTeam/OpenList/issues/2688 [<samp>(5273a)</samp>](https://github.com/OpenListTeam/OpenList/commit/5273a778)
+  - Update github.com/cloudsoda/go-smb2 digest to d8c5600 &nbsp;-&nbsp; in https://github.com/OpenListTeam/OpenList/issues/2298 [<samp>(d8598)</samp>](https://github.com/OpenListTeam/OpenList/commit/d85980d3)
+  - Update module github.com/stangelandcl/ppmd v0.1.1 &nbsp;-&nbsp; by @PIKACHUIM in https://github.com/OpenListTeam/OpenList/issues/2698 [<samp>(f63a5)</samp>](https://github.com/OpenListTeam/OpenList/commit/f63a5e15)
+- **doubao_new**:
+  - Remove temp file after cross-storage put &nbsp;-&nbsp; by @Suyunmeng in https://github.com/OpenListTeam/OpenList/issues/2530 [<samp>(98c32)</samp>](https://github.com/OpenListTeam/OpenList/commit/98c32d3b)
 - **driver**:
-  - Fix 189 & 189pc fastcopy form local storage &nbsp;-&nbsp; by @PIKACHUIM in https://github.com/OpenListTeam/OpenList/issues/2471 [<samp>(7feec)</samp>](https://github.com/OpenListTeam/OpenList/commit/7feec2b7)
-- **driver/139**:
-  - Remove RFC-incompatible request header &nbsp;-&nbsp; by @Copilot and **jyxjjj** in https://github.com/OpenListTeam/OpenList/issues/2478 [<samp>(daad2)</samp>](https://github.com/OpenListTeam/OpenList/commit/daad21ef)
-- **drivers**:
-  - Add headers in Link methods &nbsp;-&nbsp; by @xrgzs in https://github.com/OpenListTeam/OpenList/issues/2401 [<samp>(ece15)</samp>](https://github.com/OpenListTeam/OpenList/commit/ece1518e)
-- **drivers/139**:
-  - Check cdnSwitch before returning cdnUrl in personalGetLink &nbsp;-&nbsp; by @xrgzs in https://github.com/OpenListTeam/OpenList/issues/2379 [<samp>(331f5)</samp>](https://github.com/OpenListTeam/OpenList/commit/331f575c)
-- **drivers/local**:
-  - Capture ENOTTY in reflink to allow fallback &nbsp;-&nbsp; by @elysia-best in https://github.com/OpenListTeam/OpenList/issues/2492 [<samp>(7cfb2)</samp>](https://github.com/OpenListTeam/OpenList/commit/7cfb2555)
-- **drivers/wps**:
-  - Implement driver.GetRooter interface &nbsp;-&nbsp; by @xrgzs in https://github.com/OpenListTeam/OpenList/issues/2414 [<samp>(37663)</samp>](https://github.com/OpenListTeam/OpenList/commit/37663897)
-  - Correct account relevant handling &nbsp;-&nbsp; by @xrgzs and **Copilot** in https://github.com/OpenListTeam/OpenList/issues/2415 [<samp>(2d2d9)</samp>](https://github.com/OpenListTeam/OpenList/commit/2d2d9ae2)
-- **fsmanage**:
-  - Improve path validation &nbsp;-&nbsp; by @j2rong4cn in https://github.com/OpenListTeam/OpenList/issues/2437 [<samp>(c7c0c)</samp>](https://github.com/OpenListTeam/OpenList/commit/c7c0cfae)
-- **internal/fs**:
-  - Add ObjectAlreadyExists error check &nbsp;-&nbsp; by @mkitsdts in https://github.com/OpenListTeam/OpenList/issues/2019 [<samp>(e87e0)</samp>](https://github.com/OpenListTeam/OpenList/commit/e87e028a)
+  - Json: cannot unmarshal number into Go struct field RenameResp.id of type string &nbsp;-&nbsp; by @PIKACHUIM in https://github.com/OpenListTeam/OpenList/issues/2526 [<samp>(ba6f9)</samp>](https://github.com/OpenListTeam/OpenList/commit/ba6f96ca)
+  - 123pan url www.123pan.com -> yun.123pan.com &nbsp;-&nbsp; by @PIKACHUIM in https://github.com/OpenListTeam/OpenList/issues/2678 [<samp>(d4aa8)</samp>](https://github.com/OpenListTeam/OpenList/commit/d4aa8b6a)
+- **drivers/115_open**:
+  - Simplify Move and Copy methods to return error directly &nbsp;-&nbsp; by @tide-wait in https://github.com/OpenListTeam/OpenList/issues/2505 [<samp>(b86d1)</samp>](https://github.com/OpenListTeam/OpenList/commit/b86d10fa)
+- **drivers/189pc**:
+  - Pass pointer to RenameResp in Rename method &nbsp;-&nbsp; by @Ovear in https://github.com/OpenListTeam/OpenList/issues/2647 [<samp>(6ed7d)</samp>](https://github.com/OpenListTeam/OpenList/commit/6ed7db1e)
+  - Sync .torrent file when copy/move/rename/upload &nbsp;-&nbsp; by @PIKACHUIM in https://github.com/OpenListTeam/OpenList/issues/2522 [<samp>(bfbc4)</samp>](https://github.com/OpenListTeam/OpenList/commit/bfbc441f)
+- **drivers/chunk**:
+  - Handle missing chunk part zero &nbsp;-&nbsp; by @jyxjjj and **Codex** in https://github.com/OpenListTeam/OpenList/issues/2619 [<samp>(a0f00)</samp>](https://github.com/OpenListTeam/OpenList/commit/a0f001c1)
+- **drivers/ftp**:
+  - Add cwd_list option and filter path-separated entries &nbsp;-&nbsp; by @sorubedo and **Claude** in https://github.com/OpenListTeam/OpenList/issues/2621 [<samp>(3abdf)</samp>](https://github.com/OpenListTeam/OpenList/commit/3abdf799)
+- **drivers/github_releases**:
+  - Skip broken repos instead of returning 500 &nbsp;-&nbsp; by @xrgzs, **Claude Code**, **Mimo** and **Copilot** in https://github.com/OpenListTeam/OpenList/issues/2494 [<samp>(a42e3)</samp>](https://github.com/OpenListTeam/OpenList/commit/a42e3676)
+- **drivers/thunder**:
+  - Handle missing token errors &nbsp;-&nbsp; by @jyxjjj in https://github.com/OpenListTeam/OpenList/issues/2623 [<samp>(d3497)</samp>](https://github.com/OpenListTeam/OpenList/commit/d3497656)
+- **drivers/webdav**:
+  - Normalize missing path error &nbsp;-&nbsp; by @fwerkor and **ChatGPT** in https://github.com/OpenListTeam/OpenList/issues/2611 [<samp>(f4547)</samp>](https://github.com/OpenListTeam/OpenList/commit/f4547335)
+- **fs**:
+  - Clear skipped names before copy and move tasks &nbsp;-&nbsp; by @Suyunmeng in https://github.com/OpenListTeam/OpenList/issues/2520 [<samp>(4c77b)</samp>](https://github.com/OpenListTeam/OpenList/commit/4c77b9c7)
+- **go.mod**:
+  - Update Go version to 1.25 &nbsp;-&nbsp; by @elysia-best in https://github.com/OpenListTeam/OpenList/issues/2692 [<samp>(86679)</samp>](https://github.com/OpenListTeam/OpenList/commit/866793f4)
+- **ilanzou**:
+  - Fix redirect &nbsp;-&nbsp; by @ucscynsqfhnlmntznkaeporoc in https://github.com/OpenListTeam/OpenList/issues/2649 [<samp>(5a12c)</samp>](https://github.com/OpenListTeam/OpenList/commit/5a12c8d2)
+- **index/meilisearch**:
+  - Refresh progress after update &nbsp;-&nbsp; by @jyxjjj and **Codex** in https://github.com/OpenListTeam/OpenList/issues/2628 [<samp>(7e55f)</samp>](https://github.com/OpenListTeam/OpenList/commit/7e55f11e)
+- **local**:
+  - Remove thumbnail cache on delete &nbsp;-&nbsp; by @jyxjjj and **Codex** in https://github.com/OpenListTeam/OpenList/issues/2627 [<samp>(ffe3f)</samp>](https://github.com/OpenListTeam/OpenList/commit/ffe3f3cf)
+- **offline-download**:
+  - Block cloud metadata endpoints &nbsp;-&nbsp; by @jyxjjj in https://github.com/OpenListTeam/OpenList/issues/2487 [<samp>(ace74)</samp>](https://github.com/OpenListTeam/OpenList/commit/ace7482b)
 - **offline_download**:
-  - Fix login failure caused by qBittorrent 5.2.0 returning HTTP 204 No Content on successful authentication &nbsp;-&nbsp; by @yuanczx in https://github.com/OpenListTeam/OpenList/issues/2476 [<samp>(31b41)</samp>](https://github.com/OpenListTeam/OpenList/commit/31b41f99)
-- **qbittorrent**:
-  - Handle non-200 response during login to prevent long startup waits &nbsp;-&nbsp; by @airium in https://github.com/OpenListTeam/OpenList/issues/2248 [<samp>(bfda7)</samp>](https://github.com/OpenListTeam/OpenList/commit/bfda719e)
-- **setting**:
-  - Handle delete of setting item with empty key &nbsp;-&nbsp; by @j2rong4cn in https://github.com/OpenListTeam/OpenList/issues/2131 [<samp>(ea19b)</samp>](https://github.com/OpenListTeam/OpenList/commit/ea19bed2)
+  - Restore SimpleHttp fallback for http links &nbsp;-&nbsp; by @Suyunmeng in https://github.com/OpenListTeam/OpenList/issues/2516 [<samp>(3b176)</samp>](https://github.com/OpenListTeam/OpenList/commit/3b1760e9)
+  - Block SimpleHttp temp file path traversal via strict filename sanitization &nbsp;-&nbsp; by @Suyunmeng [<samp>(9cc5d)</samp>](https://github.com/OpenListTeam/OpenList/commit/9cc5dd96)
+- **op**:
+  - Use oldName variable for cache updates in Rename function &nbsp;-&nbsp; by @j2rong4cn in https://github.com/OpenListTeam/OpenList/issues/2570 [<samp>(054db)</samp>](https://github.com/OpenListTeam/OpenList/commit/054db9f5)
+- **s3**:
+  - Only skip direct redirect for true sub-resource queries &nbsp;-&nbsp; by @syscc in https://github.com/OpenListTeam/OpenList/issues/2604 [<samp>(d7c33)</samp>](https://github.com/OpenListTeam/OpenList/commit/d7c332ca)
+- **sftp**:
+  - Add connection timeout &nbsp;-&nbsp; by @jyxjjj and **Codex** in https://github.com/OpenListTeam/OpenList/issues/2626 [<samp>(b7f9e)</samp>](https://github.com/OpenListTeam/OpenList/commit/b7f9e8ef)
+- **teldrive**:
+  - Avoid index out of range panic when listing an empty dir &nbsp;-&nbsp; by @SAY-5 in https://github.com/OpenListTeam/OpenList/issues/2585 [<samp>(bd6cf)</samp>](https://github.com/OpenListTeam/OpenList/commit/bd6cf5bc)
+- **upload**:
+  - Respect overwrite for direct uploads &nbsp;-&nbsp; by @jyxjjj and **Codex** in https://github.com/OpenListTeam/OpenList/issues/2625 [<samp>(eadf0)</samp>](https://github.com/OpenListTeam/OpenList/commit/eadf03a4)
+- **webauthn**:
+  - Enable discoverable keys &nbsp;-&nbsp; by @EzraRT in https://github.com/OpenListTeam/OpenList/issues/2451 [<samp>(dcfef)</samp>](https://github.com/OpenListTeam/OpenList/commit/dcfefce8)
+- **workflow**:
+  - Using github-script &nbsp;-&nbsp; by @elysia-best in https://github.com/OpenListTeam/OpenList/issues/2701 [<samp>(fcae0)</samp>](https://github.com/OpenListTeam/OpenList/commit/fcae009b)
 
-### &nbsp;&nbsp;&nbsp;🏎 Performance
-
-- Replace strings.Split with strings.SplitSeq &nbsp;-&nbsp; by @j2rong4cn in https://github.com/OpenListTeam/OpenList/issues/2441 [<samp>(d3a6b)</samp>](https://github.com/OpenListTeam/OpenList/commit/d3a6b065)
-
-##### &nbsp;&nbsp;&nbsp;&nbsp;[View changes on GitHub](https://github.com/OpenListTeam/OpenList/compare/v4.2.1...v4.2.2)
+##### &nbsp;&nbsp;&nbsp;&nbsp;[View changes on GitHub](https://github.com/OpenListTeam/OpenList/compare/v4.2.2...v4.2.3)
