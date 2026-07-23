@@ -1,7 +1,7 @@
 id=openlist
 name=OpenList
-version=v4.2.3
-versionCode=4203
+version=v4.2.4
+versionCode=4204
 author=Alien-Et
 description=【已停止】请点击"操作"启动程序。项目地址：https://github.com/vxmj/OpenList-Magisk
 updateJson=https://raw.githubusercontent.com/vxmj/OpenList-Magisk/main/update.json
